@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+{% block title %}
+    Добавление
+{% endblock %}
+{% block addons %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://jspreadsheet.com/v8/jspreadsheet.js"></script>
+<script src="https://jsuites.net/v4/jsuites.js"></script>
+<link rel="stylesheet" href="https://jspreadsheet.com/v8/jspreadsheet.css" type="text/css" />
+<link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
+{% endblock %}
+{% block content %}
+<div id='spreadsheet'></div>
+
+<script>
+var  data = [
+            ['Mazda', 2001, 2000],
+            ['Pegeout', 2010, 5000],
+            ['Honda Fit', 2009, 3000],
+            ['Honda CRV', 2010, 6000],
+        ]
+jspreadsheet(document.getElementById('spreadsheet'), {
+    worksheets: [{
+        data: data,
+	minDimension: [4,3],
+        columns: [
+            { title:'1', width:'300px' },
+            { title:'2',  width:'80px' },
+            { title:'3', width:'100px' }
+        ]
+    }],
+    license: 'NDM3MjRjOWM4MDUyNTE4NTU1NGM3YzllODU3NDQxZWRiMjk0MjZiMDkxM2ZjMjFiYjlmYTg2OTRjMDc1Mzg5ZTRiZjgzMTBkMzU1MDljOGE4OTI2ODhjZDk5Y2FlYzVlMjdmMjg3Yzc0ZWFhYzA4ZjhmYzZhNzUzMTVjODlkYzcsZXlKdVlXMWxJam9pVVhkbGNuUjVOamNpTENKa1lYUmxJam94TmpRMU56UTNNakF3TENKa2IyMWhhVzRpT2xzaUlpd2liRzlqWVd4b2IzTjBJbDBzSW5Cc1lXNGlPakFzSW5OamIzQmxJanBiSW5ZM0lpd2lkamdpWFgwPQ=='
+});
+</script>
+
+<br>
+<textarea id='console'></textarea><br>
+<input type='button' value='Get the content of the data variable'
+    onclick="document.getElementById('console').value =  JSON.stringify(data)">
+
+{% endblock %}
