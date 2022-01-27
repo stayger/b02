@@ -4,9 +4,11 @@
 {% endblock %}
 {% block addons %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://jspreadsheet.com/v8/jspreadsheet.js"></script>
+
+<script src="https://bossanova.uk/jspreadsheet/v4/jexcel.js"></script>
+<link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jexcel.css" type="text/css" />
+ 
 <script src="https://jsuites.net/v4/jsuites.js"></script>
-<link rel="stylesheet" href="https://jspreadsheet.com/v8/jspreadsheet.css" type="text/css" />
 <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
 {% endblock %}
 {% block content %}
@@ -14,27 +16,36 @@
 
 <script>
 var  data = [
-            ['Mazda', 2001, 2000],
-            ['Pegeout', 2010, 5000],
-            ['Honda Fit', 2009, 3000],
-            ['Honda CRV', 2010, 6000],
+            ['Концентрат', '01-01-2022', 6.0, 6.0, 6.0, 6.0, 6.0],
         ]
 jspreadsheet(document.getElementById('spreadsheet'), {
-    worksheets: [{
         data: data,
-	minDimension: [4,3],
         columns: [
-            { title:'conc', width:'300px' },
-            { title:'fe', width:'80px' },
-            { title:'ca', width:'80px' }
+            { title:'Концентрат', width:'300px' },
+            { type: 'calendar', title:'Дата', width:'100px' },
+            { type: 'numeric', title:'Железо', width:'80px' },
+            { type: 'numeric', title:'Кремний', width:'80px' },
+            { type: 'numeric', title:'Алюминий', width:'80px' },
+            { type: 'numeric', title:'Кальций', width:'80px' },
+            { type: 'numeric', title:'Сера', width:'80px' },
+
+
         ]
-    }],
-    license: 'NDM3MjRjOWM4MDUyNTE4NTU1NGM3YzllODU3NDQxZWRiMjk0MjZiMDkxM2ZjMjFiYjlmYTg2OTRjMDc1Mzg5ZTRiZjgzMTBkMzU1MDljOGE4OTI2ODhjZDk5Y2FlYzVlMjdmMjg3Yzc0ZWFhYzA4ZjhmYzZhNzUzMTVjODlkYzcsZXlKdVlXMWxJam9pVVhkbGNuUjVOamNpTENKa1lYUmxJam94TmpRMU56UTNNakF3TENKa2IyMWhhVzRpT2xzaUlpd2liRzlqWVd4b2IzTjBJbDBzSW5Cc1lXNGlPakFzSW5OamIzQmxJanBiSW5ZM0lpd2lkamdpWFgwPQ=='
+  
 });
 </script>
 
 <br>
-<form action="{% url 'add_conc' %}" method="post">
+<div id="console">
+    jopa
+</div>
+<script>
+    function doSubmit(){
+        document.sendc.data1.value = JSON.stringify(data);
+        return true;
+      }
+</script>
+<form name="sendc" action="{% url 'add_conc' %}" method="post" onsubmit="doSubmit();">
     {% csrf_token %}
     <select name="month">
               <option>1</option>
@@ -50,8 +61,9 @@ jspreadsheet(document.getElementById('spreadsheet'), {
               <option>11</option>
               <option>12</option>
     </select>
+    <input type=text id="data1" name="data1" value="">
     <button type="submit" class="btn btn-success">-></button>
-<input type='button' value='Get the content of the data variable'
-    onclick="document.getElementById('console').value =  JSON.stringify(data)">
+
 </form>
+
 {% endblock %}

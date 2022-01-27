@@ -1,5 +1,7 @@
+import json
 from django.shortcuts import render
 from django.db.models import *
+from django.template import context
 from .models import Conc
 
 
@@ -12,6 +14,16 @@ def about(request):
 
 def add(request):
     return render(request, 'main/add.html')
+
+
+def add_conc(request):
+    month = request.POST["month"]
+    data = json.loads(request.POST["data1"])
+    for item in data:
+        print(item)
+    
+    context = {'month': month, 'data':data}
+    return render(request, 'main/add_conc.html',context=context)
 
 
 def report(request):
