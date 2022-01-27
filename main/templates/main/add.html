@@ -28,8 +28,6 @@ jspreadsheet(document.getElementById('spreadsheet'), {
             { type: 'numeric', title:'Алюминий', width:'80px' },
             { type: 'numeric', title:'Кальций', width:'80px' },
             { type: 'numeric', title:'Сера', width:'80px' },
-
-
         ]
   
 });
@@ -48,18 +46,9 @@ jspreadsheet(document.getElementById('spreadsheet'), {
 <form name="sendc" action="{% url 'add_conc' %}" method="post" onsubmit="doSubmit();">
     {% csrf_token %}
     <select name="month">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
+        {% for i in n %}
+              <option> {{i}} </option>
+        {% endfor %}
     </select>
     <input type=text id="data1" name="data1" value="">
     <button type="submit" class="btn btn-success">-></button>
