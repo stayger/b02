@@ -34,9 +34,7 @@ jspreadsheet(document.getElementById('spreadsheet'), {
 </script>
 
 <br>
-<div id="console">
-    jopa
-</div>
+
 <script>
     function doSubmit(){
         document.sendc.data1.value = JSON.stringify(data);
@@ -47,10 +45,10 @@ jspreadsheet(document.getElementById('spreadsheet'), {
     {% csrf_token %}
     <select name="month">
         {% for i in n %}
-              <option> {{i}} </option>
+            <option> {{i}} </option>
         {% endfor %}
     </select>
-    <input type=text id="data1" name="data1" value="">
+    <input type="hidden" id="data1" name="data1" value="">
     <button type="submit" class="btn btn-success">-></button>
 
 </form>
